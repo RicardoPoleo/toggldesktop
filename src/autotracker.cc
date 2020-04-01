@@ -12,6 +12,11 @@ namespace toggl {
 static const char kTermSeparator = '\t';
 
 bool AutotrackerRule::Matches(const TimelineEvent &event) const {
+    const Poco::LocalDateTime localDateTime(Poco::DateTime(event.EndTime()));
+    if (!days_of_week_[localDateTime.dayOfWeek()]) {
+        return false;
+    }
+
     for (const auto& term : terms_) {
         if (Poco::UTF8::toLower(event.Title()).find(term)
                 != std::string::npos) {
