@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <bitset>
 
 #include <Poco/Types.h>
 
@@ -29,6 +30,10 @@ class TOGGL_INTERNAL_EXPORT AutotrackerRule : public BaseModel {
     void SetTerms(const std::string &value);
     const std::string TermsString() const;
 
+    const std::bitset<7> &DaysOfWeek() const;
+    void SetDaysOfWeek(const Poco::UInt32 daysOfWeek);
+    Poco::UInt32 DaysOfWeekUInt32() const;
+
     const Poco::UInt64 &PID() const;
     void SetPID(const Poco::UInt64 value);
 
@@ -42,6 +47,7 @@ class TOGGL_INTERNAL_EXPORT AutotrackerRule : public BaseModel {
 
  private:
     std::vector<std::string> terms_;
+    std::bitset<7> days_of_week_;
     Poco::UInt64 pid_;
     Poco::UInt64 tid_;
 };

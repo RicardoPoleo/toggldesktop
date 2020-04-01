@@ -91,4 +91,16 @@ const std::string AutotrackerRule::TermsString() const {
     return ss.str();
 }
 
+const std::bitset<7> &AutotrackerRule::DaysOfWeek() const {
+    return days_of_week_;
+}
+
+void AutotrackerRule::SetDaysOfWeek(const Poco::UInt32 daysOfWeek) {
+    days_of_week_ = std::bitset<7>(daysOfWeek);
+}
+
+Poco::UInt32 AutotrackerRule::DaysOfWeekUInt32() const {
+    return days_of_week_.to_ulong();
+}
+
 }  // namespace toggl
